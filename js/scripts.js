@@ -8,7 +8,7 @@ $(document).ready(function() {
 		e.stopPropagation();
 	});
 	$(document).keypress(function(e){
-	    if (e.which == 13 && esController.isConnected) {
+	    if (e.which == 13 && apiController.isConnected) {
 	        $("#search").click();
 	    }
 	});

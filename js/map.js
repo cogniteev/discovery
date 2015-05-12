@@ -129,18 +129,19 @@ var mapController = {
 		var features = [];
 		for (var i = 0; i < hits.length; i++) {
 			var hit = hits[i];
-			var id = hit._id;
+			var id = hit.id;
 			var type = hit._type;
 			var source = hit._source;
-			// Bug see elasticsearch-osmosis-plugin/issues/10
-			source.shape.type = mapToGeoJsonType(source.shape.type);
+			var shape = { type: 'Point', coordinates: hit.centroid}
+
 			features.push({
 				"type": "Feature",
-				"geometry": source.shape,
+				"geometry": shape,
 				"properties": {
 					"id": id,
 					"type": type,
-					"tags": source.tags
+					"tags": hit.tags,
+					"name": hit.name
 				}
 			});
 		}

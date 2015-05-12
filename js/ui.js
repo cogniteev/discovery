@@ -13,14 +13,14 @@ var uiController = {
 	"init": function() {
 		$("button#connect").click(function() {
 			var url = $("input#url").val();
-			url = normalizeUrl(url);
+			//url = normalizeUrl(url);
 			$("input#url").val(url);
-			esController.connect(url);
+			apiController.connect(url);
 		});
 		$("button#disconnect").click(function() {
 			mapController.setEnabled(false);
 			uiController.setConnected(false);
-			esController.isConnected = false;
+			apiController.isConnected = false;
 		});
 		$("button#add-filter").click(function() {
 			var template = '<div><input type="text" class="input-small" placeholder="Key"> ' +
@@ -32,7 +32,7 @@ var uiController = {
 			$("div#filters").append(html);
 		});
 		$("button#search").click(function() {
-			esController.search({
+			apiController.search({
 				index: uiController.getIndex(),
 				types: uiController.getTypes(),
 				size: uiController.getSize(),
@@ -78,7 +78,7 @@ var uiController = {
 			return size;
 		} else {
 			$("#max-result").val("");
-			return 10;
+			return 100;
 		}
 	},
 	"getName": function() {
